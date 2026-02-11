@@ -20,7 +20,7 @@ Configurez vos variables d'environnement :
 ```
 DATABASE_URL="votre-url-postgresql"
 JWT_SECRET="votre-secret-jwt-sécurisé"
-PORT=8000
+PORT=3000
 GEMINI_API_KEY="votre-api-key-gemini"
 ```
 
@@ -61,14 +61,14 @@ docker-compose -f docker-compose.dev.yml up
 2. Créez un nouveau projet
 3. Connectez votre repository GitHub
 4. Configurez le dockerfile : `Dockerfile`
-5. Configurez le port : `8000`
+5. Configurez le port : `3000`
 6. Ajoutez les variables d'environnement dans les secrets Dockploy
 7. Configurez le health check : `GET /health`
 
 ### Via CLI Dockploy
 
 ```bash
-dockploy deploy --dockerfile Dockerfile --port 8000
+dockploy deploy --dockerfile Dockerfile --port 3000
 ```
 
 ## Étapes de build et déploiement
