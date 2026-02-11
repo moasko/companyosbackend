@@ -12,8 +12,8 @@ RUN npm ci
 # Copy source code
 COPY . .
 
-# Generate Prisma Client
-RUN npm run prisma:generate
+# Generate Prisma Client (skip schema validation on build)
+RUN SKIP_ENV_VALIDATION=true npm run prisma:generate
 
 # Build application
 RUN npm run build
