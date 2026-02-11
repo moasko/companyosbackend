@@ -19,7 +19,7 @@ COPY . .
 RUN npm run prisma:generate
 
 # Expose port for debugging
-EXPOSE 8000 9229
+EXPOSE 3000 9229
 
 # Use dumb-init to handle signals properly
 ENTRYPOINT ["dumb-init", "--"]
