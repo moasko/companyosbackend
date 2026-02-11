@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: companyos-backend-dev
+    ports:
+      - "8000:8000"
+      - "9229:9229"
+    environment:
+      NODE_ENV: development
+      DATABASE_URL: postgresql://postgres:postgres@db:5432/companyos
+      JWT_SECRET: dev-secret-key
+      PORT: 8000
+      GEMINI_API_KEY: ${GEMINI_API_KEY}
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/dist
+    restart: unless-stopped
+    networks:
+      - companyos-network
+    command: npm run start:dev
+
+  db:
+    image: postgres:16-alpine
+    container_name: companyos-postgres-dev
+    environment:
+      POSTGRES_DB: companyos
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - postgres_data_dev:/var/lib/postgresql/data
+    restart: unless-stopped
+    networks:
+      - companyos-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgres_data_dev:
+
+networks:
+  companyos-network:
+    driver: bridge
