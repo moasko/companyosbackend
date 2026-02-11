@@ -2,7 +2,7 @@
   "name": "companyos-backend",
   "description": "ENEA Telecom Backend - NestJS with Prisma",
   "dockerfile": "Dockerfile",
-  "port": 8000,
+  "port": 3000,
   "buildArgs": {
     "NODE_ENV": "production"
   },
