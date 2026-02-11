@@ -7,12 +7,12 @@ services:
       dockerfile: Dockerfile
     container_name: companyos-backend
     ports:
-      - "${PORT:-8000}:8000"
+      - "${PORT:-3000}:3000"
     environment:
       NODE_ENV: production
       DATABASE_URL: ${DATABASE_URL}
       JWT_SECRET: ${JWT_SECRET}
-      PORT: ${PORT:-8000}
+      PORT: ${PORT:-3000}
       GEMINI_API_KEY: ${GEMINI_API_KEY}
     depends_on:
       - db
